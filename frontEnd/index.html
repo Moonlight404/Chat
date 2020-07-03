@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NekoApp</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="background"></div>
+        <div class="relative inline left">
+            <div class="avatar me"
+            @click="showMyStatus"
+            :class="colorsPeopleStatus.find(e => e.status == me.status).status">
+                <img :src="defaultAvatar" alt="">
+            </div>
+            <div class="alterarStatus" :class="{openStatus: alterStatus}">
+                <h1>Alterar Status</h1>
+                <li 
+                @click = "changeStatus(status.status)"
+                :class="{statusAtivo: me.status == status.status}" v-for="status in colorsPeopleStatus">
+                    {{ status.status }}
+                </li>
+                <hr>
+                <br>
+                <h1>Alterar meu Nickname</h1>
+                <br>
+                <input @keyup="saveNick" v-model="nickName" type="text" placeholder="Nickname">
+            </div>
+        </div>
+        <div class="relative inline left_options">
+            <div class="padding-10">
+                <br v-for="i in 4">
+                <ul class="membros" style="height: auto;">
+                    <li 
+                    @click="chating = {}"
+                    :class="{activo : !members.find(e=> e.token == chating.token)}">
+                        Ínicio
+                    </li>
+                </ul>
+                <h1>Membros</h1>
+                <ul class="membros">
+                    <span style="color: #fff; padding: 10px; margin: 10px; position: relative; top: 20px;" v-if="membrosAtivos == 0">
+                        Nenhum membro online
+                    </span>
+                    <li v-for="member in members"
+                    @click="chatingWith(member)"
+                    v-if="member.token !== me.token"
+                    :class="{activo : members.find(e=> e.token == chating.token)}"
+                    >
+                    <div
+                    class="notification"
+                    :class="{pop : member.notification > 0}">
+                        <span v-if="member.notification < 99">{{ member.notification }}</span>
+                        <span v-else="">+99</span>
+                    </div>
+                        <div 
+                        :class="colorsPeopleStatus.find(e => e.status == member.status).status"
+                        class="avatar">
+                            <img :src="defaultAvatar" alt="">
+                        </div>
+                        <span>{{ member.nome }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="center inline relative">
+            <div class="padding-10" v-if="!members.find(e=> e.token == chating.token)">
+                <h1>Ínicio</h1>
+                <div class="chat" style="overflow: hidden; font-size: 1.5vw;">
+                    <div class="msgs" style="color: #fff; padding: 10px; top: 50%; left: 50%;
+                    position: absolute; transform: translate(-50%, -50%); height: auto; width: auto;
+                    overflow: hidden;">
+                        <h2>Seja bem vindo ao Chat</h2>
+                        <h2>Envie uma mensagem para uma pessoa :D</h2>
+                    </div>
+                </div>
+            </div>
+            <div v-else="" class="padding-10">
+                <h1>{{ chating.nome }}</h1>
+                <div class="chat">
+                    <div class="msgs">
+                        <div class="msg" v-for="msg in members.find(e => e.token == chating.token).msgs">
+                            <div
+                            class="avatar" style="width: 35px; height: 35px; float: left; top: -10px;">
+                                <img :src="defaultAvatar" alt="">
+                            </div>
+                            <span style="padding: 10px; position: relative; top: 0px; color: #fff;">{{ members.find(e => e.token == msg.me).nome }}</span>
+                            <br>
+                            <span style="color: #fff; padding: 10px;" class="mensagem">
+                                {{ msg.msg }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <input
+                        @keyup.enter="sendMessage" v-model="messageText" type="text" placeholder="Qual sua mensagem?">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

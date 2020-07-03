@@ -1,0 +1,284 @@
+.background{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url('../img/background.jpg');
+    top: 0px;
+    left: 0px;
+}
+
+body{
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.left{
+    position: relative;
+    width: 100px;
+    height: 100vh;
+}
+
+.inline{
+    float: left;
+}
+
+.relative{
+    position: relative;
+}
+
+.left_options{
+    background: #393351;
+    width: 280px;
+    height: 100vh;
+}
+
+.center{
+    background: #2f2b43;    
+    width: calc(100% - 380px);
+    height: 100vh;
+}
+
+.left::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    filter: saturate(0.5);
+    background: #0a0813bf;
+    top: 0px;
+}
+
+.left .avatar{
+    margin: 50px auto;
+}
+
+.avatar{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #eee;
+    border-radius: 50%;
+    z-index: 50;
+    cursor: pointer;
+}
+
+.avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.Online{
+    border: 2px solid #0f9e0f96;
+}
+
+.Ocupado{
+    border: 2px solid #9e0f0f96;
+}
+
+.Offline{
+    border: 2px solid rgba(0, 0, 0, 0.45);
+}
+
+.alterarStatus{
+    position: absolute;
+    width: 150px;
+    height: auto;
+    background: #fff;
+    z-index: 100;
+    top: 13px;
+    left: 0px;
+    box-shadow: 2px 1px 1px #180d215c;
+    border-radius: 1px;
+    transition: 0.2s;
+    transform: scale(0);
+    padding: 15px;
+}
+
+.alterarStatus h1{
+    position: relative;
+    z-index: 10;
+    font-size: 14px;
+    text-align: center;
+}
+
+.alterarStatus li{
+    position: relative;
+    z-index: 1;
+    list-style: none;
+    padding: 3px;
+    margin: 5px;
+    background: #fff;
+    color: #151515;
+    cursor: pointer;
+}
+
+.statusAtivo{
+    background: #393351 !important;
+    color: #fff !important;
+}
+
+.alterarStatus li:hover{
+    background: #eee;
+}
+
+.alterarStatus::after{
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 25px solid #fff;
+    top: -6px;
+    position: absolute;
+    left: 0px;
+}
+
+.openStatus{
+    transform: scale(1);
+    top: 113px;
+    left: 20px;
+}
+
+.padding-10{
+    padding: 10px;
+}
+
+.center h1{
+    font-size: 19px;
+    padding: 10px;
+    border-bottom: 1px solid rgb(57, 51, 81);
+    color: #fff;
+}
+
+.left_options h1{
+    font-size: 19px;
+    padding: 10px;
+    border-bottom: 1px solid rgb(47, 43, 67);
+    color: #fff;
+}
+
+.membros li{
+    list-style: none;
+    color: #fff;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transform: scale(0.9);
+}
+
+.membros li:hover{
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.membros li .avatar, li{
+    display: flex;
+    margin-top: 0px;
+}
+
+.membros li .avatar{
+    width: 38px;
+    height: 38px;
+    margin-top: 7px;
+    object-fit: cover;
+}
+
+.membros li span{
+    padding: 15px;
+    word-break: break-all;
+    width: 153px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.membros{
+    overflow: auto;
+    height: 94vh;
+}
+
+.chat{
+    position: absolute;
+    width: 100%;
+    height: calc(94% - 20px);
+}
+
+.chat .bottom{
+    position: absolute;
+    bottom: 0px;
+    height: 40px;
+    width: 100%;
+    border-top: 1px solid #393351;
+    padding-top: 10px;
+}
+
+.chat .bottom input{
+    width: 90%;
+    left: 3%;
+    position: relative;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 20px;
+    background: #190e22;
+    color: #fff;
+}
+
+.chat .msgs{
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: calc(100% - 60px);
+}
+
+.msg{
+    padding: 10px;
+    background: #393351;
+    width: fit-content;
+    padding: 20px;
+    margin: 10px;
+    padding-right: 40px;
+}
+
+.alterarStatus input{
+    border: none;
+    outline: none;
+    background: #eee;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
+    padding: 8px;
+    width: 90%;
+}
+
+.membros .activo{
+    background: #000;
+}
+
+.membros .notification{
+    width: 49px;
+    height: 38px;
+    background: #3F51B5;
+    position: absolute;
+    right: 0px;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 10px;
+    transform: scale(0);
+    transition: 0.4s ease;
+}
+
+.pop{
+    transform: scale(0.7) !important;
+}
+
+.membros .notification span{
+    position: relative;
+    top: 6px;
+}
